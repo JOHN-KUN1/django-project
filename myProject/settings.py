@@ -25,7 +25,7 @@ mimetypes.add_type("text/css", ".css", True)
 SECRET_KEY = 'django-insecure-)tmcyps+d$(wv4k6=fp+-v8tk7fg)$i+m*e0ew!rvduu(k$c_o'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
