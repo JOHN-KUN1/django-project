@@ -1,0 +1,21 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+
+    {% for posts in posts %}
+    <article class="tw-bg-gray-800 tw-rounded-lg tw-p-2 tw-shadow-lg tw-mb-4">
+        <div class="tw-flex-1">
+            <div class="tw-flex tw-items-center tw-mb-2">
+                <a class="tw-text-white tw-font-medium tw-mr-2" href="{% url 'blog:postDetail' posts.id%}">{{ posts.author }}</a>
+                <small class="tw-text-gray-400">{{ posts.date }} (You can click on the title to update the blog post.)</small>
+            </div>
+            <h3 class="tw-text-2xl tw-font-semibold tw-text-white">
+                <a class="tw-text-white" href="{% url 'blog:postDetail' posts.id%}">{{posts.title}}</a>
+            </h3>
+            <p class="tw-text-gray-200">{{ posts.content }}</p>
+        </div>
+    </article>
+    <br>
+      
+    {% endfor  %}
+{% endblock content %}
