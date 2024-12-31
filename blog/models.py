@@ -5,8 +5,8 @@ from django.urls import reverse
 
 # Create your models here.
 
-## admin username - john
-#admin password - johntest
+# admin username - john
+# admin password - johntest
 
 
 class Blogs(models.Model):
