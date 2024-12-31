@@ -1,0 +1,22 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+    <div class="tw-bg-gray-800 tw-rounded-lg tw-p-6 tw-shadow-lg">
+        <form action="" method="post">
+            {% csrf_token %}
+            <fieldset class="tw-mb-4 tw-border-b tw-border-gray-600">
+                <legend class="tw-text-xl tw-font-semibold tw-text-white tw-mb-4">Create Post</legend>
+                {{ form|crispy }}
+            </fieldset>
+            <div class="tw-mb-4">
+                <button class="tw-bg-white tw-border tw-border-blue-400 tw-text-blue-400 tw-px-4 tw-py-2 tw-rounded hover:tw-bg-blue-400 hover:tw-text-white" type="submit">Post</button>
+            </div>
+            <div class="tw-border-t tw-border-gray-600 tw-pt-3">
+                <small class="tw-text-gray-400"><a href="{% url 'blog:postHome' %}" class="tw-text-blue-400">Go Back to blog page</a></small>
+            </div>
+        </form>
+    </div>
+
+{% endblock content %}

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet"/>
+    <script src="{% static "script.js" %}"></script>
+    <link rel="stylesheet" href="{% static "main.css" %}">
+    <script>
+        tailwind.config = {
+            prefix:'tw-',
+            preflight: false
+        };
+    </script>
+    <title>Document</title>
+</head>
+<body>
+    <nav> 
+        {%if user.is_authenticated%}
+            <a href="/" title = "Home">🏠
+                <span>Home</span>
+            </a> | 
+            <a href="/weather" title="Weather" >☁️
+                <span>Weather</span>
+            </a> | 
+            <a href="/blog" title="Blogs">📝
+                <span>Blogs</span>
+            </a> |
+            <a href="{% url "blog:postNew" %}" title="Create New Post">🆕
+                <span>Create New Post</span>
+            </a> | 
+            <form class="logout" action={% url "users:logout" %} method="post">
+                {% csrf_token %}
+                <button class="logout-button" type="submit" title="Logout">👋</button>
+                <span>Logout</span>
+            </form>
+        {% else %}
+            <a href="/" title = "Home">🏠
+                <span>Home</span>
+            </a> | 
+            <a href="/about" title="Contact Us" >☎️
+                <span>Contact Us</span>
+            </a> |
+            <a href="/weather" title="Weather" >☁️
+                <span>Weather</span>
+            </a> | 
+            <a href="/blog" title="Blogs">📝
+                <span>Blogs</span>
+            </a> | 
+            <a href="/users/register/" title="Sign Up">👤
+                <span>Sign Up</span>
+            </a> | 
+            <a href="/users/login/" title="Login">🔐
+                <span>Login</span>
+            </a> 
+        {% endif %}
+    </nav>
+    <main role="main" class="container">
+        <div class="row">
+            <div class="col-md-8">
+                {%  if messages%}
+                    {% for message in messages %}
+                        <div class="alert-{{ message.tags }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="col-md-8">
+                {% block content %}{% endblock %}
+            </div>
+            <div class="col-md-4">
+                <div class="content-sectionw">
+                    <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white" style="width: 380px;" style="padding-top: 120px;">
+                        <a id="list-group" style="text-decoration: none;" href="" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
+                            <span class="fs-5 fw-semibold" id="gist-btn">Latest Gist</span>
+                        </a>
+                        <div class="list-group list-group-flush border-bottom scrollarea">
+                            <a href="#" class="list-group-item list-group-item-action  lh-tight" aria-current="true">
+                                <div class="d-flex w-100 align-items-center justify-content-between">
+                                    <strong class="mb-1">Seriously, Stop Trying to Teach Toddlers How to Code...By Desphixs</strong>
+                                    <small>Wed</small>
+                                </div>
+                                <div class="col-10 mb-1 small">AS A BABY nerd, I was obsessed with Hackers. The 1995 cult movie... </div>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action py-3 lh-tight">
+                                <div class="d-flex w-100 align-items-center justify-content-between">
+                                    <strong class="mb-1">Its not a bug - It's a feature... by Desphixs</strong>
+                                    <small class="text-muted">Tues</small>
+                                </div>
+                                <div class="col-10 mb-1 small">When it comes to coding, everything works like a miracle, let me use that word...hahaha</div>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action py-3 lh-tight">
+                                <div class="d-flex w-100 align-items-center justify-content-between">
+                                    <strong class="mb-1">I wanted to be a great programmer but...by Desphixs</strong>
+                                    <small class="text-muted">Mon</small>
+                                </div>
+                                <div class="col-10 mb-1 small">in my family trait, nobody knows anything about computers and i wanted to be the greatest computer scientist ever and...</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="" >
+            <ul class="nav justify-content-center border-bottom"  style="margin-top: 60px;">
+                <li class="nav-item">Created by John.</li>
+            </ul>
+            <p class="text-center text-muted">&copy; John 2024</p>
+        </footer>
+    </main>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

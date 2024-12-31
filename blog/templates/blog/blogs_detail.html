@@ -1,0 +1,19 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+    <article class="tw-bg-gray-800 tw-rounded-lg tw-p-3 tw-shadow-lg tw-mb-4">
+        <div class="tw-flex-1">
+            <div class="tw-flex tw-items-center tw-mb-2">
+                <a class="tw-text-white tw-mr-2" href="#">{{ object.author }}</a>
+                <small class="tw-text-gray-400">{{ object.date }}</small>
+                {% if object.author == user %}
+                    <a class="tw-text-blue-400" href="{% url 'blog:postUpdate' object.id %}"> 👉Click here to Update blog Post👈</a>
+                {% endif %}
+            </div>
+            <h3 class="tw-text-xl tw-font-semibold tw-text-white">{{ object.title }}</h3>
+            <p class="tw-text-gray-200 tw-mb-2">{{ object.content }}</p>
+            <a class="tw-text-red-400" href="{% url 'blog:postDelete' object.id %}"> 🚨Click here to Delete blog Post🚨</a>
+        </div>
+    </article>
+    <br>
+{% endblock content %}
