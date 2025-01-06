@@ -1,24 +1,57 @@
-# ci-cd-configurations-files
 
-## Commands: We have used in Our Video
+# Setup Instructions
 
-
-$ wget https://Bucket-name.s3.Region-identifier.amazonaws.com/latest/install
+A guide on how to setup and run this project on your local machine
 
 
-##### Next up, we need to change the permission on the install file we will get after running the command above.
+## Setup and Deployment
 
-$ chmod +x ./install
+Clone the Repository
 
-##### Finally, to install the codedeploy-agent, run this command:
+```bash
+  git clone <repository_url>
+  cd myProject
+```
 
-$ sudo ./install auto > /tmp/logfile
+Activate the Virtual Environment
 
-###### Here we are logging the output of the installation to the /tmp/logfile file. To check if the codedeploy-agent is running, enter this command:
-$ sudo service codedeploy-agent status
+```bash
+  .venv/Scripts/activate
+```
 
-###### If it is not running, enter this command to start the codedeploy-agent service:
+Install the Dependencies
 
-$ sudo service codedeploy-agent status
+```bash
+  pip install -r requirements.txt
+```
 
+Run Migrations
+
+```bash
+  python manage.py migrate
+```
+
+Create a Superuser
+
+```bash
+  python manage.py createsuperuser
+```
+
+Run the Development Server
+
+```bash
+  python manage.py runserver
+```
+
+Access the Application
+
+```bash
+  http://127.0.0.1:8000/
+```
+
+## How to Run Test
+
+```bash
+  python manage.py test
+```
 
