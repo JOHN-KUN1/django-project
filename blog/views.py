@@ -35,7 +35,7 @@ class PostCreateView(CreateView):
     
     
 @method_decorator(login_required(login_url='/users/login'),name='dispatch')
-class PostUpdateView(UserPassesTestMixin,UpdateView):
+class PostUpdateView(UpdateView):
     model = Blogs
     fields = ['title', 'content']
 
