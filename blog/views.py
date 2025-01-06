@@ -39,10 +39,6 @@ class PostUpdateView(UserPassesTestMixin,UpdateView):
     model = Blogs
     fields = ['title', 'content']
 
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
-
     def test_func(self):
         post = self.get_object()
         if self.request.user == post.author:
